@@ -2,8 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useState } from 'react';
-import { CheckCircleIcon, XCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 const sections = [
   {
@@ -46,9 +45,15 @@ const sections = [
   }
 ];
 
+// Custom hook for section visibility
+function useSectionInView(threshold = 0.2) {
+  return useInView({
+    threshold,
+    triggerOnce: true
+  });
+}
+
 export default function Home() {
-  const [activeSection, setActiveSection] = useState('intro');
-  
   return (
     <main className="min-h-screen bg-background-light">
       {/* Hero Section */}
@@ -70,10 +75,7 @@ export default function Home() {
 
       {/* Content Sections */}
       {sections.map((section) => {
-        const [ref, inView] = useInView({
-          threshold: 0.2,
-          triggerOnce: true
-        });
+        const { ref, inView } = useSectionInView();
 
         return (
           <section
