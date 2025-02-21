@@ -7,41 +7,70 @@ import { CheckCircleIcon, QuestionMarkCircleIcon, SparklesIcon, HeartIcon, StarI
 const sections = [
   {
     id: 'intro',
-    title: 'למה חשוב לעזור בבית? ✨',
-    content: 'כשאנחנו עוזרים בבית, אנחנו לומדים להיות אחראים, עצמאיים ומפתחים כישורי חיים חשובים. זו דרך נהדרת להראות אכפתיות למשפחה שלנו!',
-    icon: '🌟'
+    title: 'משפחת קלטי - עוזרים ביחד! ✨',
+    content: 'היי יונתן, יעל ומיכל! כשאנחנו עוזרים בבית, אנחנו הופכים את הבית שלנו למקום נעים יותר לכולם. זו הזדמנות נהדרת להראות אחריות ולתרום למשפחה שלנו!',
+    icon: '👨‍👩‍👧‍👦'
   },
   {
     id: 'tasks',
-    title: 'איזה משימות אפשר לעשות? 🎯',
+    title: 'משימות שאפשר לעשות בבית 🏠',
     tasks: [
-      { task: 'סידור החדר', age: '4+', icon: '🎮' },
-      { task: 'קיפול כביסה', age: '6+', icon: '👕' },
-      { task: 'עריכת שולחן', age: '5+', icon: '🍽️' },
-      { task: 'האכלת חיות מחמד', age: '6+', icon: '🐾' },
-      { task: 'שטיפת כלים', age: '8+', icon: '✨' },
-      { task: 'טאטוא/שואב', age: '7+', icon: '🧹' },
+      { task: 'הדחת כלים והוצאה מהמדיח', icon: '🍽️', description: 'לפנות את המדיח כשהוא נקי ולהכניס כלים מלוכלכים' },
+      { task: 'ניקוי חדר אמבטיה', icon: '🚿', description: 'ניקוי המקלחת, הכיור והאסלה' },
+      { task: 'טיול עם מקס', icon: '🐕', description: 'להוציא את מקס לטיול בוקר/ערב' },
+      { task: 'סידור החדר', icon: '🛏️', description: 'סידור כללי, אוורור החדר וסידור המיטה' },
+      { task: 'ניקוי מטבח', icon: '🧽', description: 'ניקוי השיש, הכיריים והרצפה' },
+      { task: 'קניות בסופר', icon: '🛒', description: 'עזרה בקניות שבועיות או השלמות' },
+      { task: 'כביסות', icon: '👕', description: 'קיפול, תלייה והכנסת כביסה למכונה' },
+      { task: 'שואב אבק', icon: '🧹', description: 'שאיבת אבק בחדרים ובסלון' },
+      { task: 'האכלת מקס', icon: '🦴', description: 'לדאוג שלמקס יש מים ואוכל טרי' }
     ]
   },
   {
     id: 'discussion',
     title: 'בואו נדבר על זה! 💫',
     questions: [
-      'איך אתם מרגישים כשאתם עוזרים בבית? 🤔',
-      'איזו משימה אתם הכי אוהבים לעשות? ❤️',
-      'האם יש משימה שאתם לא אוהבים? למה? 🤷‍♂️',
-      'איך אפשר להפוך את המשימות לכיפיות יותר? 🎉'
+      'איך אתם מרגישים כשהבית נקי ומסודר? 🏡',
+      'איזו משימה כל אחד מכם הכי אוהב לעשות? 💝',
+      'איך אפשר לחלק את המשימות בצורה הוגנת? 🤝',
+      'איך מקס מרגיש כשלוקחים אותו לטיול? 🐕',
+      'מה דעתכם על רוטציה שבועית של משימות? 🔄',
+      'איך אפשר לעזור אחד לשני במשימות? 🤗'
+    ]
+  },
+  {
+    id: 'schedule',
+    title: 'איך מתארגנים? 📅',
+    content: 'בואו נחשוב ביחד איך לארגן את המשימות בצורה שתתאים לכולם, בהתחשב בלוח הזמנים של כל אחד:',
+    scheduleIdeas: [
+      { text: 'יונתן - אחרי אימון כדורסל', icon: '🏀' },
+      { text: 'יעל - בין שיעורי הפסנתר', icon: '🎹' },
+      { text: 'מיכל - אחרי שיעורי בית', icon: '📚' },
+      { text: 'משימות משותפות בסופ"ש', icon: '🌞' }
     ]
   },
   {
     id: 'rewards',
-    title: 'תגמול והערכה 🌈',
-    content: 'חשוב לזכור שעזרה בבית היא חלק מלהיות חבר במשפחה. אבל אפשר גם ליצור מערכת תגמול כיפית!',
+    title: 'רעיונות לתגמול והערכה 🌈',
+    content: 'כשכולם עוזרים, כולם מרוויחים! הנה כמה רעיונות איך אפשר להעריך את העזרה של כל אחד:',
     ideas: [
-      { text: 'טבלת מדבקות שבועית', icon: '⭐' },
-      { text: 'זמן איכות מיוחד עם ההורים', icon: '❤️' },
-      { text: 'בחירת ארוחת ערב או פעילות משפחתית', icon: '🎮' },
-      { text: 'הכרה והערכה מילולית', icon: '🏆' }
+      { text: 'ערב משפחתי - בחירת סרט או משחק', icon: '🎮' },
+      { text: 'בחירת מסעדה לארוחת ערב', icon: '🍕' },
+      { text: 'זמן איכות מיוחד עם אבא או אמא', icon: '❤️' },
+      { text: 'הזמנת חברים הביתה', icon: '👥' },
+      { text: 'תוספת לדמי הכיס', icon: '💰' },
+      { text: 'יציאה משפחתית מיוחדת', icon: '🎡' }
+    ]
+  },
+  {
+    id: 'special',
+    title: 'משימות מיוחדות 🌟',
+    content: 'לפעמים יש משימות מיוחדות שדורשות שיתוף פעולה של כולם:',
+    specialTasks: [
+      { text: 'סידור הבית לפני אירוח', icon: '🎉' },
+      { text: 'ניקיון יסודי לפני חג', icon: '✨' },
+      { text: 'ארגון וסידור הארונות', icon: '📦' },
+      { text: 'הכנת ארוחת ערב משפחתית', icon: '👨‍🍳' }
     ]
   }
 ];
@@ -107,7 +136,7 @@ function Section({ section }: { section: typeof sections[0] }) {
                   {task.icon}
                 </div>
                 <h3 className="text-2xl font-semibold mb-2">{task.task}</h3>
-                <p className="text-lg text-text-dark/70">גיל מומלץ: {task.age}</p>
+                <p className="text-lg text-text-dark/70">{task.description}</p>
               </motion.div>
             ))}
           </div>
@@ -131,24 +160,24 @@ function Section({ section }: { section: typeof sections[0] }) {
           </div>
         )}
 
-        {section.id === 'rewards' && (
+        {(section.id === 'rewards' || section.id === 'special' || section.id === 'schedule') && (
           <div className="space-y-8">
             <p className="text-xl text-center mb-12 max-w-3xl mx-auto leading-relaxed">
               {section.content}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {section.ideas?.map((idea, index) => (
+              {(section.ideas || section.specialTasks || section.scheduleIdeas)?.map((item, index) => (
                 <motion.div
-                  key={idea.text}
+                  key={item.text}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="card flex items-center gap-4 group"
                 >
                   <div className="text-3xl transform transition-transform group-hover:scale-125 group-hover:rotate-12">
-                    {idea.icon}
+                    {item.icon}
                   </div>
-                  <p className="text-xl">{idea.text}</p>
+                  <p className="text-xl">{item.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -209,7 +238,7 @@ export default function Home() {
             משימות בבית
           </h1>
           <p className="text-2xl md:text-3xl text-text-dark/80 max-w-3xl mx-auto leading-relaxed">
-            בואו נלמד ביחד על החשיבות של עזרה בבית ואיך אנחנו יכולים לתרום למשפחה שלנו!
+            בואו נארגן את המשימות בבית בצורה כיפית ומשפחתית!
           </p>
         </motion.div>
       </section>
