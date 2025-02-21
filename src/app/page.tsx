@@ -45,12 +45,103 @@ const sections = [
   }
 ];
 
-// Custom hook for section visibility
-function useSectionInView(threshold = 0.2) {
-  return useInView({
-    threshold,
+// Section component
+function Section({ section }: { section: typeof sections[0] }) {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
     triggerOnce: true
   });
+
+  return (
+    <section
+      key={section.id}
+      ref={ref}
+      id={section.id}
+      className={`section-container ${
+        section.id === 'tasks' ? 'bg-secondary/10' :
+        section.id === 'discussion' ? 'bg-accent/10' :
+        section.id === 'rewards' ? 'bg-primary/10' : ''
+      }`}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-4xl"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+          {section.title}
+        </h2>
+
+        {section.id === 'tasks' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {section.tasks?.map((task, index) => (
+              <motion.div
+                key={task.task}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="card hover:bg-primary/5"
+              >
+                <h3 className="text-xl font-semibold mb-2">{task.task}</h3>
+                <p className="text-sm text-text-dark/70">גיל מומלץ: {task.age}</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {section.id === 'discussion' && (
+          <div className="space-y-6">
+            {section.questions?.map((question, index) => (
+              <motion.div
+                key={question}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="card flex items-start gap-4"
+              >
+                <QuestionMarkCircleIcon className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
+                <p className="text-lg">{question}</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {section.id === 'rewards' && (
+          <div className="space-y-6">
+            <p className="text-lg text-center mb-8">{section.content}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {section.ideas?.map((idea, index) => (
+                <motion.div
+                  key={idea}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  className="card flex items-center gap-3"
+                >
+                  <CheckCircleIcon className="w-6 h-6 text-primary flex-shrink-0" />
+                  <p>{idea}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {section.id === 'intro' && (
+          <div className="text-center text-lg leading-relaxed">
+            <p className="mb-6">{section.content}</p>
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-4xl"
+            >
+              👨‍👩‍👧‍👦
+            </motion.div>
+          </div>
+        )}
+      </motion.div>
+    </section>
+  );
 }
 
 export default function Home() {
@@ -74,100 +165,9 @@ export default function Home() {
       </section>
 
       {/* Content Sections */}
-      {sections.map((section) => {
-        const { ref, inView } = useSectionInView();
-
-        return (
-          <section
-            key={section.id}
-            ref={ref}
-            id={section.id}
-            className={`section-container ${
-              section.id === 'tasks' ? 'bg-secondary/10' :
-              section.id === 'discussion' ? 'bg-accent/10' :
-              section.id === 'rewards' ? 'bg-primary/10' : ''
-            }`}
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6 }}
-              className="w-full max-w-4xl"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-                {section.title}
-              </h2>
-
-              {section.id === 'tasks' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {section.tasks?.map((task, index) => (
-                    <motion.div
-                      key={task.task}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="card hover:bg-primary/5"
-                    >
-                      <h3 className="text-xl font-semibold mb-2">{task.task}</h3>
-                      <p className="text-sm text-text-dark/70">גיל מומלץ: {task.age}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {section.id === 'discussion' && (
-                <div className="space-y-6">
-                  {section.questions?.map((question, index) => (
-                    <motion.div
-                      key={question}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="card flex items-start gap-4"
-                    >
-                      <QuestionMarkCircleIcon className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
-                      <p className="text-lg">{question}</p>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {section.id === 'rewards' && (
-                <div className="space-y-6">
-                  <p className="text-lg text-center mb-8">{section.content}</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {section.ideas?.map((idea, index) => (
-                      <motion.div
-                        key={idea}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={inView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="card flex items-center gap-3"
-                      >
-                        <CheckCircleIcon className="w-6 h-6 text-primary flex-shrink-0" />
-                        <p>{idea}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {section.id === 'intro' && (
-                <div className="text-center text-lg leading-relaxed">
-                  <p className="mb-6">{section.content}</p>
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-4xl"
-                  >
-                    👨‍👩‍👧‍👦
-                  </motion.div>
-                </div>
-              )}
-            </motion.div>
-          </section>
-        );
-      })}
+      {sections.map((section) => (
+        <Section key={section.id} section={section} />
+      ))}
     </main>
   );
 }
